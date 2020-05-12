@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch API Example</title>
+</head>
+<body>
+<div>
+    <h1>Getting Started With Fecth API</h1>
+    <button id="fetchUserDataBtn">Fetch User Data</button>
+</div>
+<hr>
+<div id="response"></div>
+<script>
+    const fetchDataBtn = document.querySelector('#fetchUserDataBtn');
+    const responseDiv = document.querySelector('#response')
+    let response = '';
+    fetchDataBtn.addEventListener('click', fetchUserData);
+    function fetchUserData() {
+        const url = 'https://jsonplaceholder.typicode.com/users';
+        fetch(url).then(res => res.json()).then(json => {
+            for (let item of json) {
+                response += `<div><ul><li>ID: ${item.id}</li><li>Name: ${item.name}</li></ul></div>`;
+            }
+            responseDiv.innerHTML = response;
+        });
+    }
+</script>
+</body>
+</html>
